@@ -4,11 +4,10 @@
 import AppKit
 import SwiftUI
 
-@available(macOS 10.15, *)
-public class Tray: NSObject, NSPopoverDelegate {
+public class Tray: NSObject {
     
-    @Published var statusItem: NSStatusItem?
-    @Published var popover = NSPopover()
+    private(set) var statusItem: NSStatusItem?
+    private(set) var popover = NSPopover()
     
     private(set) var width: Int = 0
     private(set) var height: Int = 0
@@ -39,12 +38,11 @@ public class Tray: NSObject, NSPopoverDelegate {
         
         popover.animates = true
         popover.behavior = .transient
-        popover.delegate = self
         
         popover.contentViewController = NSViewController()
         popover.contentViewController?.view = view
         popover.contentViewController?.view.frame = NSRect(x: 0, y: 0, width: self.width, height: self.height)
-        popover.contentViewController?.view.window?.makeKey()
+        popover.contentViewController?.view.window?.level = self.level
         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
@@ -55,10 +53,6 @@ public class Tray: NSObject, NSPopoverDelegate {
             menuBtn.action = #selector(menuBtnAction)
             menuBtn.sendAction(on: [.leftMouseUp, .rightMouseUp])
         }
-    }
-    
-    public func popoverDidShow(_ notification: Notification) {
-        popover.contentViewController?.view.window?.level = self.level
     }
     
     @objc func menuBtnAction(sender: AnyObject) {
@@ -81,6 +75,7 @@ public class Tray: NSObject, NSPopoverDelegate {
         } else {
             if let menuBtn = statusItem?.button {
                 popover.show(relativeTo: menuBtn.bounds, of: menuBtn, preferredEdge: .minY)
+                popover.contentViewController?.view.window?.makeKey()
             }
         }
     }
