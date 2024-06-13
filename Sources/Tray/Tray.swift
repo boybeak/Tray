@@ -28,7 +28,7 @@ public class Tray: NSObject {
         return tray
     }
     
-    private(set) var statusItem: NSStatusItem?
+    private(set) public var statusItem: NSStatusItem?
     private(set) var popover: NSPopover? = nil
     
     private(set) var width: Int = 0
