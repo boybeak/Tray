@@ -61,6 +61,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 ### 1. Tray icon size
 The tray icon size: 18\*18 for 1x, 36\*36 for 2x and 54\*54 for 3x.
 
+### 2. Work with SwiftUI
+If you are using SwiftUI, you can init AppDelegate like below:
+```swift
+@main
+struct MyApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var app: AppDelegate
+
+    var body: some Scene {
+        Settings {}
+    }
+}
+```
+The code `Settings {}` will hide main window if your app is a tray only app.
+
+### 3. Hide app's docker icon
+In Info.plist add an options: **Application is agent(UIElement)** - **YES**
+
 ## More
 Who use this library?
 1. [Translator](https://github.com/boybeak/TranslatorDocs);
