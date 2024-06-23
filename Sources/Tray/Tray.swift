@@ -29,7 +29,7 @@ public class Tray: NSObject {
     }
     
     private(set) public var statusItem: NSStatusItem?
-    private(set) var popover: NSPopover? = nil
+    private(set) public var popover: NSPopover? = nil
     
     private(set) var width: Int = 0
     private(set) var height: Int = 0
