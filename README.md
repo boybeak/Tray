@@ -93,6 +93,7 @@ struct ContentView: View {
 }
 ```
 After config size, it looks normal.
+
 ![anchor-triangle-normal](./art/anchor-triangle-normal.jpg)
 
 ### 3. Hide app's docker icon
