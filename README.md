@@ -75,7 +75,7 @@ struct MyApp: App {
 ```
 The code `Settings {}` will hide main window if your app is a tray only app.
 
-#### 2.1 Anchor triangle not in the middle of the window?
+#### 2.1 Anchor triangle is not in the middle of the window?
 ![anchor-triangle-issue](./art/anchor-triangle-issue.jpg)
 If you are using swiftUI, you'd better both set size in tray and swiftUI's view.
 ```swift
