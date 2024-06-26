@@ -41,8 +41,6 @@ public class Tray: NSObject {
     private var onLeftClick: (() -> Bool)? = nil
     private var onRightClick: (() -> Bool)? = nil
     
-    private var onPopoverToggle: ((_ open: Bool) -> Void)? = nil
-    
     private override init() {}
     
     @available(macOS 11.0, *)
@@ -106,10 +104,6 @@ public class Tray: NSObject {
         self.onRightClick = onClick
     }
     
-    public func setOnPopoverToggle(onPopoverToggle: @escaping (Bool) -> Void) {
-        self.onPopoverToggle = onPopoverToggle
-    }
-    
     @objc private func menuBtnAction(sender: AnyObject) {
         guard let event = NSApp.currentEvent else { return }
         switch event.type {
@@ -137,13 +131,11 @@ public class Tray: NSObject {
     private func togglePopover(sender: AnyObject) {
         if popover?.isShown == true {
             popover?.performClose(sender)
-            self.onPopoverToggle?(false)
         } else {
             if let menuBtn = statusItem?.button {
                 popover?.show(relativeTo: menuBtn.bounds, of: menuBtn, preferredEdge: .minY)
                 popover?.contentViewController?.view.window?.level = self.level
                 popover?.contentViewController?.view.window?.makeKey()
-                self.onPopoverToggle?(true)
             }
         }
     }

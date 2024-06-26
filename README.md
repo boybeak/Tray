@@ -75,6 +75,26 @@ struct MyApp: App {
 ```
 The code `Settings {}` will hide main window if your app is a tray only app.
 
+#### 2.1 Anchor triangle not in the middle of the window?
+![anchor-triangle-issue](./art/anchor-triangle-issue.jpg)
+If you are using swiftUI, you'd better both set size in tray and swiftUI's view.
+```swift
+// Tray install
+Tray.install(content: ContentView(), size: CGSize(width: 320, height: 320))
+```
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Text("Hello, world!")
+        }
+        .frame(width: 320, height: 320)
+    }
+}
+```
+After config size, it looks normal.
+![anchor-triangle-normal](./art/anchor-triangle-normal.jpg)
+
 ### 3. Hide app's docker icon
 In Info.plist add an options: **Application is agent(UIElement)** - **YES**
 
