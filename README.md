@@ -1,5 +1,5 @@
 # Tray
-A macOS tray app helper library. Support both **SwiftUI** and **AppKit**.
+Build a menubar app easily on macOS. Support both **SwiftUI** and **AppKit**.
 
 ## Install
 Open **XCode**, then **File** -> **Add Package Dependencies...**, on the new window, copy `https://github.com/boybeak/Tray.git` and paste it to search input.
