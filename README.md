@@ -74,6 +74,7 @@ struct MyApp: App {
 }
 ```
 ~~The code `Settings {}` will hide main window if your app is a tray only app.~~
+
 This not work for macOS 15. Use [NoLaunchWin](https://github.com/boybeak/NoLaunchWin) instead.
 
 #### 2.1 Anchor triangle is not in the middle of the window?
